@@ -1,0 +1,89 @@
+#include<bits/stdc++.h>
+using namespace std;
+class node
+{
+public:
+    int data;
+    node *next;
+};
+
+node* create(node *head)
+{
+    node *p,*n;
+    int val;
+    char ch;
+    do
+    {
+       n = new node;
+    cout<<"enter value of node(1 or 0)"<<endl;
+    cin>>val;
+    n->data=val;
+    n->next=NULL;
+
+    if(head==NULL)
+    {
+        head=n;
+        p=n;
+    }
+
+    else
+    {
+        p->next=n;
+        p=n;
+    }
+
+    cout<<"want to add more node(y/n)"<<endl;
+    cin>>ch;
+    }while(ch=='y' || ch=='Y');
+
+
+    return head;
+}
+
+void display(node *head)
+{
+    node *p;
+    p=head;
+    int ans=0;
+    if(head==NULL)
+    {
+        ans=0;
+    }
+    else
+    {
+      while(p!=NULL)
+      {
+        ans = ans*2 + p->data;
+        p=p->next;
+      }
+
+    }
+
+    cout<<ans<<endl;
+}
+
+int main()
+{
+    int ch;
+    node *head;
+    head=NULL;
+    do
+    {
+       cout<<"1. create linked list"<<endl;
+    cout<<"2. display binary equivalent"<<endl;
+    cout<<"3.exit"<<endl;
+    cout<<"enter your choice"<<endl;
+    cin>>ch;
+    switch(ch)
+    {
+    case 1:
+        head = create(head);
+        break;
+    case 2:
+        display(head);
+        break;
+    }
+    }while(ch!=3);
+
+     return 0;
+}
