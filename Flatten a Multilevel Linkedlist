@@ -1,0 +1,128 @@
+#include<bits/stdc++.h>
+using namespace std;
+class node
+{
+    public:
+   int data;
+   node *next;
+   node *child;
+};
+
+node* create()
+{
+    node *n,*p,*head;
+    head=NULL;
+    int ch,val;
+    do
+    {
+       n = new node;
+    cout<<"enter data for node"<<endl;
+    cin>>val;
+    n->data=val;
+    n->next=NULL;
+    n->child=NULL;
+
+      if(head==NULL)
+        {
+            head=n;
+            p=n;
+
+        }
+      else
+        {
+            p=head;
+            int flag=1;
+            while(flag!=0)
+            {
+                 cout<<"1. next of "<<p->data<<endl;
+                 cout<<"2. child of "<<p->data<<endl;
+            cin>>ch;
+            if(ch==1)
+            {
+                if(p->next==NULL)
+                {
+                    p->next=n;
+                    flag=0;
+                }
+                else
+                {
+                    p=p->next;
+                }
+            }
+            else
+            {
+                if(p->child==NULL)
+                {
+                  p->child=n;
+                   flag=0;
+                }
+                else
+                {
+                    p=p->child;
+                }
+
+            }
+            }
+
+        }
+        cout<<"want to continue(1 for yes/2 for no)"<<endl;
+        cin>>ch;
+}while(ch==1);
+
+return head;
+
+}
+
+
+void display(node *head)
+{
+    node *p,*q;
+    p=head;
+    q=p;
+    while(q->next!=NULL)
+    {
+        q=q->next;
+    }
+    while(p!=NULL)
+    {
+        if(p->child!=NULL)
+        {
+            q->next=p->child;
+        }
+        while(q->next!=NULL)
+        {
+            q=q->next;
+        }
+        cout<<p->data<<"->";
+        p=p->next;
+    }
+
+}
+
+int main()
+{
+    char ch;
+    int c;
+    node *head;
+    head=NULL;
+    do
+    {
+        cout<<"1.insert a node\n2.display"<<endl;
+        cin>>c;
+        switch(c)
+        {
+        case 1:
+            head=create();
+            break;
+        case 2:
+            display(head);
+            break;
+
+        }
+        cout<<"\ndo u want to continue(y/n)"<<endl;
+        cin>>ch;
+
+    }while(ch!='n'||ch!='N');
+
+    return 0;
+}
