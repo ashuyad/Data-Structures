@@ -1,0 +1,34 @@
+/*The structure of linked list is the following
+struct Node
+{
+int data;
+Node* next;
+};*/
+Node *removeDuplicates(Node *root)
+{
+ // your code goes here
+ Node *p,*q;
+ p=root->next;
+ q=root;
+ while(p!=NULL)
+ {
+     while(q->data==p->data)
+     {
+         p=p->next;
+         if(p==NULL)
+           break;
+     }
+     if(p==NULL)
+     {
+         q->next=p;
+     }
+     else
+     {
+         q->next=p;
+         q=p;
+         p=p->next;
+     }
+     
+ }
+ return root;
+}
