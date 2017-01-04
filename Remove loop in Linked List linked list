@@ -1,0 +1,68 @@
+Hello ashuyadav1234   |     Logout
+GeeksforGeeks Practice     BETA GeeksforGeeks
+Home
+School
+Basic
+Easy
+Medium
+Hard
+What's New?
+Help 
+Home Medium	Remove loop in Linked List View Solution
+ Company Tags
+Amazon
+Microsoft
+Adobe
+Snapdeal
+Flipkart
+Microsoft
+Google
+Samsung
+Oracle
+Goldman Sachs
+show more
+ Problem Tags
+Maths
+Array
+String
+dp
+Tree
+Linked List
+Sorting
+Bit
+Graph
+Matrix
+show more
+/*The structure of linked list is the following
+struct node
+{
+int data;
+node* next; };*/
+/*The function removes the loop from the linked list if present
+You are required to complete this method*/
+void removeTheLoop(node *list)
+{
+     //Your code here
+    node *fast,*slow;
+    fast=list->next;
+    slow=list;
+    while(fast && fast->next)
+    {
+        if(fast==slow)
+        break;
+        fast=fast->next->next;
+        slow=slow->next;
+    }
+    if(fast==slow)
+    {
+        slow=list;
+        while(slow!=fast->next)
+        {
+            fast=fast->next;
+            slow=slow->next;
+            
+        }
+        fast->next=NULL;
+    }
+    
+}
