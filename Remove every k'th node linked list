@@ -1,0 +1,39 @@
+/* Link list Node 
+struct Node
+{
+    int data;
+    struct Node* next;
+};*/
+/*You are required to complete this method*/
+Node * deleteK(Node *head,int K)
+{
+    Node *p,*q;
+    p=head;
+    int i;
+  if(head==NULL|| K==0)
+    return head;
+    
+  else if((head->next==NULL && K==1) ||K==1)
+    return NULL;
+    
+  else
+  {
+     while(p!=NULL && p->next!=NULL)
+     {
+         for(i=1;i<K;i++)
+         {
+             q=p;
+             p=p->next;
+             if(p==NULL)
+               break;
+         }
+         if(i==K)
+         {
+             q->next=p->next;
+             q=p;
+             p=p->next;
+         }
+     }
+  }
+  return head;
+}
