@@ -1,0 +1,59 @@
+/*
+
+The structure of linked list is the following
+
+struct Node
+{
+int data;
+Node* next;
+};
+
+*/
+Node* reverse(Node *head)
+{
+    Node *p,*q,*r;
+    p=head->next;
+    q=head;
+    r=NULL;
+    while(p!=NULL)
+    {
+        q->next=r;
+        r=q;
+        q=p;
+        p=p->next;
+    }
+    q->next=r;
+    return q;
+}
+
+Node *inPlace(Node *root)
+{
+ // your code goes here
+ Node *fast,*slow,*p;
+ fast=root->next;
+ slow=root;
+ while(fast!=NULL &&fast->next!=NULL)
+ {
+     fast=fast->next->next;
+     slow=slow->next;
+ }
+ p=slow;
+ slow=slow->next;
+ p->next=NULL;
+ slow=reverse(slow);
+ fast=root;
+ Node *f1=fast->next;
+ Node*s1=slow->next;
+ while(fast!=NULL && slow!=NULL)
+ {
+     fast->next=slow;
+     fast=f1;
+     if(f1!=NULL)
+        f1=f1->next;
+     slow->next=fast;
+     slow=s1;
+     if(s1!=NULL)
+        s1=s1->next;
+ }
+  return root; 
+}
