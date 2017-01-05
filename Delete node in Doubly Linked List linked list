@@ -1,0 +1,22 @@
+/*struct Node
+{
+  int data;
+  Node *next;
+  Node *prev;
+};
+ */
+
+void deleteNode(Node **head_ref, Node *del)
+{
+  //Your code here
+  if(*head_ref==NULL || del==NULL)
+   return;
+  if(*head_ref==del)
+   *head_ref=del->next;
+  if(del->prev!=NULL)
+      del->prev->next=del->next;
+   if(del->next!=NULL)
+      del->next->prev=del->prev;
+ 
+  delete(del);
+}
