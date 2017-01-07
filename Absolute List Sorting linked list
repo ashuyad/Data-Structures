@@ -1,0 +1,28 @@
+/* The structure of the Linked list Node is as follows:
+struct Node
+{
+    Node* next;
+    int data;
+}; */
+
+void sortList(Node** head)
+{
+   Node *p,*q;
+   p=*head;
+   q=NULL;
+   while(p!=NULL)
+   {
+      if(p->data < 0 && p!=*head)
+      {
+          q->next=p->next;
+          p->next=*head;
+          *head=p;
+          p=q->next;
+      }
+      else
+      {
+          q=p;
+      p=p->next;
+      }
+   }
+}
