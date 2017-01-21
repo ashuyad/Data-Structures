@@ -1,0 +1,26 @@
+/*The Node structure is defined as
+struct Node
+{
+    int key;
+    Node *left, *right;
+}; */
+
+/*Complete the function below*/
+void print(Node *root,int k,int &index)
+{
+    if(root==NULL || index>=k)
+     return;
+    print(root->right,k,index);
+    index++;
+    if(index==k)
+    cout<<root->key<<endl;
+    print(root->left,k,index);
+}
+void kthLargest(Node *root, int k)
+{
+    
+     int index = 0;
+
+    print(root,k,index);
+
+}
