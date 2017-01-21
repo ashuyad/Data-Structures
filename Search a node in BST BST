@@ -1,0 +1,22 @@
+/* Node structure 
+struct node {
+    int data;
+   struct node * right, * left;
+};*/
+
+
+/*You are required to complete this method*/
+bool search(node* root, int x)
+{
+    //Your code here
+    if(root==NULL)
+     return false;
+    
+    if(x < root->data)
+     search(root->left,x);
+    else if(x > root->data)
+     search(root->right,x);
+    else if(x == root->data)
+      return true;
+}
+
