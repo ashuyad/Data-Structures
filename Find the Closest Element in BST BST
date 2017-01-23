@@ -1,0 +1,34 @@
+/*The Node structure is
+struct Node {
+int data;
+Node * right, * left;
+};*/
+
+/*You are required to complete below method */
+int difference(Node *root,int k,int diff,int ans)
+{
+    
+    if(root)
+    {
+        int x=abs(root->data - k);
+        if(x<diff)
+          {
+              diff=x;
+              ans=root->data;
+          }
+        ans=difference(root->left,k,diff,ans);
+       
+        ans=difference(root->right,k,diff,ans);
+    }
+    return ans;
+}
+
+int maxDiff(Node *root, int k)
+{
+    //Your code here
+    int diff=INT_MAX;
+    int ans=-1;
+    ans=difference(root,k,diff,ans);
+    return ans;
+    
+}
