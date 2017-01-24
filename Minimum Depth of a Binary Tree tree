@@ -1,0 +1,48 @@
+/* The Node structure is
+struct Node
+{
+    int data;
+    Node* left;
+    Node* right;
+}; */
+
+/*You are required to complete this method*/
+struct qitem
+{
+    Node *node;
+    int depth;
+};
+int minDepth(Node *root)
+{
+    //Your code here
+    if(root==NULL)
+    return 0;
+    queue<qitem> q;
+    qitem qi={root,1};
+    q.push(qi);
+    while(!q.empty())
+    {
+        qi=q.front();
+        q.pop();
+        Node *node=qi.node;
+        int depth=qi.depth;
+        if(node->left==NULL && node->right==NULL)
+          return depth;
+          
+        if(node->left!=NULL)
+        {
+            qi.node=node->left;
+            qi.depth=depth+1;
+            q.push(qi);
+        }
+        
+        if(node->right!=NULL)
+        {
+            qi.node=node->right;
+            qi.depth=depth+1;
+            q.push(qi);
+        }
+    }
+    return 0;
+}
+ 
