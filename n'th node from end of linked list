@@ -1,0 +1,32 @@
+/* struct Node
+ {
+   int data;
+   Node* next;
+ }; */
+
+/* Should return data of n'th node from the end of linked list */
+int getNthFromLast(Node *head, int n)
+{
+       // Your code here
+       int len = 0, i;
+    struct Node *temp = head;
+ 
+    // 1) count the number of nodes in Linked List
+    while (temp != NULL)
+    {
+        temp = temp->next;
+        len++;
+    }
+ 
+    // check if value of n is not more than length of the linked list
+    if (len < n)
+      return -1;
+ 
+    temp = head;
+ 
+    // 2) get the (n-len+1)th node from the begining
+    for (i = 1; i < len-n+1; i++)
+       temp = temp->next;
+ 
+     return temp->data;
+}
