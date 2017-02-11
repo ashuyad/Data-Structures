@@ -1,0 +1,35 @@
+/* The structure of the Linked list Node is as follows:
+struct Node {
+    int val;
+    struct Node* next;
+}; */
+void intersection(Node **head1, Node **head2,Node **head3)
+{
+    // Your Code Here
+     Node dummy;
+   Node* tail = &dummy;
+  dummy.next = NULL;
+  Node *p,*q,*r;
+  p=*head1;
+  q=*head2;
+  r=*head3;
+  /* Once one or the other list runs out -- we're done */
+  while (p!= NULL && q != NULL)
+  {
+    if (p->val == q->val)
+    {
+       Node *n=new Node;
+       n->val=p->val;
+       tail->next=n;
+       tail = tail->next;
+       p = p->next;
+       q = q->next;
+    }
+    else if (p->val <q->val) /* advance the smaller list */     
+       p = p->next;
+    else
+      q =q->next;
+  }
+  *head3=(dummy.next);
+
+}
