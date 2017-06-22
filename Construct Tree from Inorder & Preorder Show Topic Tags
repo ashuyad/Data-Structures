@@ -1,0 +1,37 @@
+/*Complete the code here.
+Node is as follows:
+struct Node
+{
+  int data;
+  Node* left;
+  Node* right;
+};
+*/
+int search(int in[],int inStrt,int inEnd,int val)
+{
+    for(int i=inStrt;i<=inEnd;i++)
+    {
+        if(in[i]==val)
+        return i;
+    }
+    return -1;
+}
+Node* buildTree(int in[],int pre[], int inStrt, int inEnd)
+{
+//add code here.
+  // static int preindex=0;
+   if(inStrt>inEnd)
+   return NULL;
+   
+   Node *tnode=newNode(pre[preIndex++]);
+   
+   
+   if(inStrt==inEnd)
+     return tnode;
+   int index=search(in,inStrt,inEnd,tnode->data);
+   tnode->left=buildTree(in,pre,inStrt,index-1);
+   tnode->right=buildTree(in,pre,index+1,inEnd);
+   
+   return tnode;
+   
+}
