@@ -1,0 +1,42 @@
+/* Tree node structure
+struct Node 
+{
+   int data;
+   Node *left, *right;
+}*/
+
+// Function should construct tree and return
+// root of it.  in[] stores inorder traversal
+// post[] stores postorder traversal.  n is
+// size of these arrays
+int search(int in[],int inStrt,int inEnd,int val)
+{
+    for(int i=inStrt;i<=inEnd;i++)
+     if(in[i]==val)
+      return i;
+     
+     return -1;
+}
+Node *buildUtil(int in[],int post[],int inStrt,int inEnd,int *pIndex)
+{
+    if(inStrt>inEnd)
+    return NULL;
+    
+    Node* node=newNode(post[*pIndex]);
+    (*pIndex)--;
+    
+    if(inStrt==inEnd)
+     return node;
+     
+     int iIndex=search(in,inStrt,inEnd,node->data);
+     node->right=buildUtil(in,post,iIndex+1,inEnd,pIndex);
+     node->left=buildUtil(in,post,inStrt,iIndex-1,pIndex);
+     
+     return node;
+}
+Node *buildTree(int in[], int post[], int n)
+{
+    // Your code here
+    int pIndex=n-1;
+    return buildUtil(in,post,0,n-1,&pIndex);
+}
