@@ -1,0 +1,55 @@
+/*
+
+The structure of linked list is the following
+
+struct Node
+{
+int data;
+Node* next;
+};
+
+*/
+Node* reverse(Node* head)
+{
+    Node* prev=NULL;
+    Node *cur=head;
+    Node *next;
+    while(cur!=NULL)
+    {
+        next=cur->next;
+        cur->next=prev;
+        prev=cur;
+        cur=next;
+    }
+    return prev;
+}
+
+void delSmall(Node* head)
+{
+    Node *max,*cur,*temp;
+    cur=head;
+    max=head;
+    while(cur!=NULL && cur->next!=NULL)
+    {
+        if(cur->next->data < max->data)
+        {
+            temp=cur->next;
+            cur->next=temp->next;
+            free(temp);
+        }
+        else
+        {
+            cur=cur->next;
+            max=cur;
+        }
+    }
+}
+Node *compute(Node *head)
+{
+// your code goes here
+Node *h=reverse(head);
+delSmall(h);
+head=reverse(h);
+
+return head;
+}
