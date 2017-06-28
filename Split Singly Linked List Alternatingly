@@ -1,0 +1,27 @@
+/*
+structure of node is as
+struct node
+{
+	int data;
+	struct node* next;
+};
+*/
+void alternatingSplitList(struct node* headRef, struct node** aRef, struct node** bRef)
+{
+    // Code here
+    node *a,*b;
+    *aRef=headRef;
+    *bRef=headRef->next;
+    a=headRef;
+    b=headRef->next;
+    while(a->next!=NULL && b->next!=NULL)
+    {
+        a->next=b->next;
+        a=a->next;
+        b->next=a->next;
+        b=b->next;
+    }
+    a->next=NULL;
+    if(b!=NULL)
+    b->next=NULL;
+}
