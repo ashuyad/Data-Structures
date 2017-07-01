@@ -1,0 +1,41 @@
+/* A binary tree node
+struct Node
+{
+    int data;
+    Node* left, * right;
+}; */
+
+
+// Convert a given tree to a tree where every node contains sum of values of
+// nodes in left and right subtrees in the original tree
+void toSumTree(Node *node)
+{
+    if(node==NULL)
+    return;
+    if(!node->left && !node->right)
+    {
+        node->data=0;
+        return;
+    }
+    int ldata=0;
+    int rdata=0;
+    
+    if(node->left)
+     ldata=node->left->data;
+     if(node->right)
+     rdata=node->right->data;
+     node->data=ldata+rdata;
+     
+    toSumTree(node->left);
+    toSumTree(node->right);
+    
+    if(node->left)
+    ldata=node->left->data;
+    if(node->right)
+    rdata=node->right->data;
+    node->data+=ldata+rdata;
+    return;
+   
+return;
+}
+
